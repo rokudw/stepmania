@@ -299,6 +299,8 @@ PrefsManager::PrefsManager() :
 
 	m_bQuirksMode			( "QuirksMode",		false ),
 
+	m_iAdjustCacheDateTime	( "AdjustCacheDateTime", 0),
+
 	/* Debug: */
 	m_bLogToDisk			( "LogToDisk",		true ),
 #if defined(DEBUG)

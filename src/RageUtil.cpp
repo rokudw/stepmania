@@ -1901,6 +1901,12 @@ RString FloatToString( const float &num )
 	return ss.str();
 }
 
+long long StringToLongLong(const RString &sString)
+{
+	long long ret = strtoll(sString, NULL, 10);	
+	return ret;
+}
+
 const wchar_t INVALID_CHAR = 0xFFFD; /* U+FFFD REPLACEMENT CHARACTER */
 
 wstring RStringToWstring( const RString &s )

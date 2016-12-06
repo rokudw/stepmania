@@ -305,6 +305,11 @@ void SetHasBanner(SongTagInfo& info)
 	if(info.from_cache)
 	{ info.song->m_bHasBanner = StringToInt((*info.params)[1]) != 0; }
 }
+void SetCacheDateTime(SongTagInfo& info)
+{
+	if (info.from_cache)
+	{ info.song->m_llCacheDateTime = StringToLongLong((*info.params)[1]); }
+}
 
 // Functions for steps tags go below this line. -Kyz
 /****************************************************************/
@@ -590,6 +595,7 @@ struct ssc_parser_helper_t
 		song_tag_handlers["SONGFILENAME"]= &SetSongFilename;
 		song_tag_handlers["HASMUSIC"]= &SetHasMusic;
 		song_tag_handlers["HASBANNER"]= &SetHasBanner;
+		song_tag_handlers["CACHEDATETIME"] = &SetCacheDateTime;
 		/* Tags that no longer exist, listed for posterity.  May their names
 		 * never be forgotten for their service to Stepmania. -Kyz
 		 * LASTBEATHINT: // unable to parse due to tag position. Ignore.

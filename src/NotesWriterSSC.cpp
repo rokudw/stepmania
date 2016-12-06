@@ -432,7 +432,7 @@ static RString GetSSCNoteData( const Song &song, const Steps &in, bool bSavingCa
 	return JoinLineList( lines );
 }
 
-bool NotesWriterSSC::Write( RString sPath, const Song &out, const vector<Steps*>& vpStepsToSave, bool bSavingCache )
+bool NotesWriterSSC::Write( RString sPath, Song &out, const vector<Steps*>& vpStepsToSave, bool bSavingCache )
 {
 	int flags = RageFile::WRITE;
 
@@ -453,6 +453,7 @@ bool NotesWriterSSC::Write( RString sPath, const Song &out, const vector<Steps*>
 	
 	if( bSavingCache )
 	{
+		out.m_llCacheDateTime = time(NULL) + (PREFSMAN->m_iAdjustCacheDateTime);
 		f.PutLine( ssprintf( "// cache tags:" ) );
 		f.PutLine( ssprintf( "#FIRSTSECOND:%.6f;", out.GetFirstSecond() ) );
 		f.PutLine( ssprintf( "#LASTSECOND:%.6f;", out.GetLastSecond() ) );
@@ -460,6 +461,7 @@ bool NotesWriterSSC::Write( RString sPath, const Song &out, const vector<Steps*>
 		f.PutLine( ssprintf( "#HASMUSIC:%i;", out.m_bHasMusic ) );
 		f.PutLine( ssprintf( "#HASBANNER:%i;", out.m_bHasBanner ) );
 		f.PutLine( ssprintf( "#MUSICLENGTH:%.6f;", out.m_fMusicLengthSeconds ) );
+		f.PutLine(ssprintf("#CACHEDATETIME:%lld;", out.m_llCacheDateTime));
 		f.PutLine( ssprintf( "// end cache tags" ) );
 	}
 

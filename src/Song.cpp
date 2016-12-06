@@ -86,6 +86,7 @@ Song::Song()
 	m_bHasBanner = false;
 	m_bHasBackground = false;
 	m_loaded_from_autosave= false;
+	m_llCacheDateTime = 0;
 }
 
 Song::~Song()

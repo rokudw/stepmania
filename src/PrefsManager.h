@@ -309,6 +309,9 @@ public:
 	/** @brief Enable some quirky behavior used by some older versions of StepMania. */
 	Preference<bool>	m_bQuirksMode;
 
+	//for CacheDateTime
+	Preference<int> m_iAdjustCacheDateTime;
+
 	// Debug:
 	Preference<bool>	m_bLogToDisk;
 	Preference<bool>	m_bForceLogFlush;

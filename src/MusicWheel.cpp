@@ -83,6 +83,7 @@ void MusicWheel::Load( RString sType )
 	RANDOM_PICKS_LOCKED_SONGS	.Load(sType,"RandomPicksLockedSongs");
 	MOST_PLAYED_SONGS_TO_SHOW	.Load(sType,"MostPlayedSongsToShow");
 	RECENT_SONGS_TO_SHOW		.Load(sType,"RecentSongsToShow");
+	CACHEDATETIME_SONGS_TO_SHOW.Load(sType, "CacheDateTimeSongsToShow");
 	MODE_MENU_CHOICE_NAMES		.Load(sType,"ModeMenuChoiceNames");
 	SORT_ORDERS			.Load(sType,"SortOrders");
 	SHOW_EASY_FLAG			.Load(sType,"UseEasyMarkerFlag");
@@ -564,6 +565,7 @@ void MusicWheel::BuildWheelItemDatas( vector<MusicWheelItemData *> &arrayWheelIt
 		case SORT_DOUBLE_CHALLENGE_METER:
 		case SORT_LENGTH:
 		case SORT_RECENT:
+		case SORT_CACHEDATETIME:
 		{
 			// Make an array of Song*, then sort them
 			vector<Song*> arraySongs;
@@ -622,6 +624,12 @@ void MusicWheel::BuildWheelItemDatas( vector<MusicWheelItemData *> &arrayWheelIt
 					SongUtil::SortByMostRecentlyPlayedForMachine( arraySongs );
 					if( (int) arraySongs.size() > RECENT_SONGS_TO_SHOW )
 						arraySongs.erase( arraySongs.begin()+RECENT_SONGS_TO_SHOW, arraySongs.end() );
+					bUseSections = false;
+					break;
+				case SORT_CACHEDATETIME:
+					SongUtil::SortSongPointerArrayByCacheDateTime(arraySongs);
+					if ((int)arraySongs.size() > CACHEDATETIME_SONGS_TO_SHOW)
+						arraySongs.erase(arraySongs.begin() + CACHEDATETIME_SONGS_TO_SHOW, arraySongs.end());
 					bUseSections = false;
 					break;
 				case SORT_BEGINNER_METER:

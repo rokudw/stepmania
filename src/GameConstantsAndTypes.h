@@ -174,6 +174,7 @@ enum SortOrder
 	SORT_DOUBLE_MEDIUM_METER, /**< Sort by the difficulty of the double medium meter. */
 	SORT_DOUBLE_HARD_METER, /**< Sort by the difficulty of the double hard meter. */
 	SORT_DOUBLE_CHALLENGE_METER, /**< Sort by the difficulty of the double challenge meter. */
+	SORT_CACHEDATETIME,
 	//
 	SORT_MODE_MENU, /**< Have access to the menu for choosing the sort. */
 	// course sorts
@@ -213,7 +214,7 @@ LuaDeclareType( SortOrder );
  *
  * This function is mainly used for saving sort order to the profile. -aj
  */
-inline bool IsSongSort( SortOrder so ) { return so >= SORT_PREFERRED && so <= SORT_DOUBLE_CHALLENGE_METER; }
+inline bool IsSongSort(SortOrder so) { return so >= SORT_PREFERRED && so <= SORT_CACHEDATETIME; }
 
 /** @brief The list of tap note scores available during play. */
 enum TapNoteScore { 

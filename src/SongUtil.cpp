@@ -626,6 +626,7 @@ RString SongUtil::GetSectionNameFromSongAndSort( const Song* pSong, SortOrder so
 		}
 	case SORT_POPULARITY:
 	case SORT_RECENT:
+	case SORT_CACHEDATETIME:
 		return RString();
 	case SORT_TOP_GRADES:
 		{
@@ -726,6 +727,16 @@ void SongUtil::SortByMostRecentlyPlayedForMachine( vector<Song*> &vpSongsInOut )
 	}
 
 	stable_sort( vpSongsInOut.begin(), vpSongsInOut.end(), CompareSongPointersBySortValueDescending );
+	g_mapSongSortVal.clear();
+}
+
+void SongUtil::SortSongPointerArrayByCacheDateTime(vector<Song*> &vpSongsInOut)
+{
+	for (unsigned i = 0; i < vpSongsInOut.size(); ++i)
+	{
+		g_mapSongSortVal[vpSongsInOut[i]] = ssprintf("%lld", vpSongsInOut[i]->m_llCacheDateTime);
+	}
+	stable_sort(vpSongsInOut.begin(), vpSongsInOut.end(), CompareSongPointersBySortValueDescending);
 	g_mapSongSortVal.clear();
 }
 

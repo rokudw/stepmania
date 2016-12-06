@@ -312,6 +312,8 @@ public:
 	void SetSpecifiedLastSecond(const float f);
 
 	typedef vector<BackgroundChange> 	VBackgroundChange;
+
+	long long m_llCacheDateTime;
 private:
 	/** @brief The first second that a note is hit. */
 	float firstSecond;

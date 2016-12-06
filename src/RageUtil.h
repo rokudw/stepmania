@@ -414,6 +414,7 @@ RString IntToString( const int &iNum );
 float StringToFloat( const RString &sString );
 RString FloatToString( const float &num );
 bool StringToFloat( const RString &sString, float &fOut );
+long long StringToLongLong(const RString &sString);
 // Better than IntToString because you can check for success.
 template<class T>
 inline bool operator>>(const RString& lhs, T& rhs)
